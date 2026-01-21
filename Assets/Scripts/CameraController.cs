@@ -36,7 +36,7 @@ public class CameraController : MonoBehaviour
 
         Vector3 dir = (transform.forward * zInput) + (transform.right * xInput);
         transform.position += dir * moveSpeed * Time.deltaTime;
-        transform.position += Clamp(corner1.position, corner2.position);
+        transform.position = Clamp(corner1.position, corner2.position);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
