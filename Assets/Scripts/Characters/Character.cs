@@ -17,16 +17,17 @@ public abstract class Character : MonoBehaviour
     [SerializeField] 
     protected CharState state;
     public CharState State {get {return state;}}
+
+    void Awake()
+    {
+        navAgent = GetComponent<NavMeshAgent>();
+        anim = GetComponent<Animator>();
+
+    } 
+
+    public void SetState(CharState s)
+    {
+        state = s;
+    }
 }
 
-void Awake()
-{
-    navAgent = GetComponent<NavMeshAgent>();
-    anim = GetComponent<Animator>();
-
-} 
-
-public void SetState(Charstate s)
-{
-    state = s;
-}
