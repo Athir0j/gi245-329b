@@ -88,7 +88,7 @@ public class CameraController : MonoBehaviour
     {
         MoveByKB();
         Zoom();
-        //MoveByMouse();
+        MoveByMouse();
     }
 
 }
