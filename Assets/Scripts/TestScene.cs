@@ -25,7 +25,7 @@ public class TestScene : MonoBehaviour
         for (int i = 0; i < character.Length; i++)
         {
             character[i].SetState(CharState.Attack);
-            character[i].Anime.SetTrigger("Attack");
+            character[i].Anim.SetTrigger("Attack");
         }
     }
 
@@ -34,7 +34,7 @@ public class TestScene : MonoBehaviour
         for (int i = 0; i < character.Length; i++)
         {
             character[i].SetState(CharState.Die);
-            character[i].Anime.SetTrigger("Die");
+            character[i].Anim.SetTrigger("Die");
         }
     }
 }
