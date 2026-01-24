@@ -78,7 +78,7 @@ public class CameraController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        moveSpeed = 50;
+        moveSpeed = 30;
     }
 
 
@@ -88,7 +88,7 @@ public class CameraController : MonoBehaviour
     {
         MoveByKB();
         Zoom();
-        MoveByMouse();
+        //MoveByMouse();
     }
 
 }
