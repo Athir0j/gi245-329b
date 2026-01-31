@@ -3,9 +3,11 @@ using UnityEngine;
 public class LeftClick : MonoBehaviour
 {
     public static LeftClick instance;
-    private Character curChar
+    private Camera cam;
+    [SerializeField]
+    private Character curChar;
     public Character CurChar { get { return curChar; } }
-    [SerializerField]
+    [SerializeField]
     private LayerMask layerMask;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -13,7 +15,7 @@ public class LeftClick : MonoBehaviour
     {
         instance = this;
         cam = Camera.main;
-        layerMask = layerMask.GetMask("Ground", "Character", "Building", "Item");
+        layerMask = LayerMask.GetMask("Ground", "Character", "Building", "Item");
     }
     private void SelectCharacter(RaycastHit hit)
     {

@@ -40,7 +40,7 @@ public abstract class Character : MonoBehaviour
     {
         if (navAgent != null)
         {
-            navAgent.SetDestinaiton(dest);
+            navAgent.SetDestination(dest);
             navAgent.isStopped = false;
         }
 
