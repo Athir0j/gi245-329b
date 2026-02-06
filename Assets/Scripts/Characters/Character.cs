@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 public enum CharState
 {
-    Idle, Walk, Attack, Hit, Die
+    Idle, Walk, Attack, Hit, Die, WalkToEnemy
 }
 
 public abstract class Character : MonoBehaviour
@@ -17,6 +17,22 @@ public abstract class Character : MonoBehaviour
     [SerializeField] 
     protected CharState state;
     public CharState State {get {return state;}}
+
+    [SerializeField]
+    protected int curHP = 10;
+    public int CurHp {get {return curHP;}}
+
+    [SerializeField]
+    protected Character curCharTarget;
+
+    [SerializeField]
+    protected float attackRange = 2f;
+
+    [SerializeField]
+    protected float attackCoolDown = 2f;
+    
+    protected float attackTimer = 0f;
+
 
     void Awake()
     {
@@ -54,6 +70,38 @@ public abstract class Character : MonoBehaviour
             SetState(CharState.Idle);
     }
 
+    //  move to attack an enermy 
+    public void ToAttackCharacter(Character target)
+    {
+        if(curHP <= 0 || state == CharState.Die)
+            return;
+        //lock target
+        curCharTarget = target;
+
+        // start walking to enemy 
+        navAgent.SetDestination(target.transform.position);
+        navAgent.isStopped = false;
+
+        SetState(CharState.WalkToEnemy);
+    }
+
+    protected void WalkToEnemyUpdate()
+    {
+        if(curCharTarget == null)
+        {
+            SetState(CharState.Idle);
+            return;
+        }
+
+        navAgent.SetDestination(curCharTarget.transform.position);
+        float distance = Vector3.Distance(transform.position,curCharTarget.transform.position);
+
+        if(distance <= attackRange) 
+        {
+            SetState(CharState.Attack);
+        }
+    }
+
     void Update()
     {
         switch (state)
@@ -61,6 +109,8 @@ public abstract class Character : MonoBehaviour
             case CharState.Walk:
                 WalkUpdate();
                 break;
+            
+
         }
     }
 }

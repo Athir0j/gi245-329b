@@ -26,12 +26,28 @@ public class RightClick : MonoBehaviour
             {
                 case "Ground":
                     CommandToWalk(hit,leftClick.CurChar); break;
+                case "Enemy":
+                    CommandToAttack(hit,leftClick.CurChar); break;
             }
         }
     }
+
+    // command atk
+    private void CommandToAttack(RaycastHit hit , Character c)
+    {
+        if(c == null)
+            return;
+        Character target = hit.collider.GetComponent<Character>();
+        Debug.Log("Attack: " + target);
+
+        if (target != null)
+            c.ToAttackCharacter(target);
+    }
+
+
     private void Awake()
     {
-        leftClick = GetComponent<LeftClick>(); ;
+        leftClick = GetComponent<LeftClick>();
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -50,6 +66,8 @@ public class RightClick : MonoBehaviour
             TryCommand(Input.mousePosition);
         }
     }
+
+
 
     public void CreatVFX(Vector3 pos, GameObject vfxPrefab)
     {

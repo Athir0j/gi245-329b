@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6358080631062967909}
   - component: {fileID: 4198307461682597683}
   m_Layer: 0
-  m_Name: Magic Select
+  m_Name: Hero Select
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -223,7 +223,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.17647056, g: 0.60010105, b: 0.7921569, a: 1}
+      maxColor: {r: 0.17647056, g: 0.60399646, b: 0.7921569, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
