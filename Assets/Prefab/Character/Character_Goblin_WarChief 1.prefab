@@ -3619,6 +3619,7 @@ GameObject:
   - component: {fileID: -1753785090487861692}
   - component: {fileID: 7207464936450896751}
   - component: {fileID: 1287754127101191971}
+  - component: {fileID: 1825267413624983186}
   m_Layer: 6
   m_Name: Character_Goblin_WarChief 1
   m_TagString: Enemy
@@ -3754,7 +3755,22 @@ MonoBehaviour:
   curHP: 10
   curCharTarget: {fileID: 0}
   attackRange: 2
+  attackDamage: 3
   attackCoolDown: 2
+  findingRange: 20
+--- !u!114 &1825267413624983186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a2b982a19f703b48bc851fe1708b669, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AttackAI
+  curEnemy: {fileID: 0}
 --- !u!1 &174376
 GameObject:
   m_ObjectHideFlags: 0

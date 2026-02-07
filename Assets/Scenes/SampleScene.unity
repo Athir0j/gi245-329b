@@ -1030,13 +1030,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character_Goblin_WarChief 1
       objectReference: {fileID: 0}
+    - target: {fileID: 173802, guid: 358eb4f394b82e848b18a438a6f6e22d, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 497534, guid: 358eb4f394b82e848b18a438a6f6e22d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 48.642426
       objectReference: {fileID: 0}
     - target: {fileID: 497534, guid: 358eb4f394b82e848b18a438a6f6e22d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.998169
+      value: 10.16
       objectReference: {fileID: 0}
     - target: {fileID: 497534, guid: 358eb4f394b82e848b18a438a6f6e22d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1070,6 +1074,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9508676, guid: 358eb4f394b82e848b18a438a6f6e22d, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1287754127101191971, guid: 358eb4f394b82e848b18a438a6f6e22d, type: 3}
+      propertyPath: state
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1287754127101191971, guid: 358eb4f394b82e848b18a438a6f6e22d, type: 3}
+      propertyPath: curCharTarget
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1825267413624983186, guid: 358eb4f394b82e848b18a438a6f6e22d, type: 3}
+      propertyPath: curEnemy
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1093,7 +1113,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 162860, guid: 87d655f2e267d1a43b9cfb467a996946, type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Hero
       objectReference: {fileID: 0}
     - target: {fileID: 487758, guid: 87d655f2e267d1a43b9cfb467a996946, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1134,6 +1154,18 @@ PrefabInstance:
     - target: {fileID: 487758, guid: 87d655f2e267d1a43b9cfb467a996946, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1777393642787116147, guid: 87d655f2e267d1a43b9cfb467a996946, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2293673726977438021, guid: 87d655f2e267d1a43b9cfb467a996946, type: 3}
+      propertyPath: curEnemy
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2293673726977438021, guid: 87d655f2e267d1a43b9cfb467a996946, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

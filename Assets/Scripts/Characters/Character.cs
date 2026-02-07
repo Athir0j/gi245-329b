@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using UnityEngine.AI;
 
 public enum CharState
@@ -20,18 +21,26 @@ public abstract class Character : MonoBehaviour
 
     [SerializeField]
     protected int curHP = 10;
-    public int CurHp {get {return curHP;}}
+    public int CurHP {get {return curHP;}}
 
     [SerializeField]
     protected Character curCharTarget;
+    public Character CurCharTarget {get {return curCharTarget;} set {curCharTarget = value;}}
 
     [SerializeField]
     protected float attackRange = 2f;
+    public float AttackRange {get {return attackRange;} }
+    [SerializeField]
+    protected int attackDamage = 3;
 
     [SerializeField]
     protected float attackCoolDown = 2f;
     
     protected float attackTimer = 0f;
+
+    [SerializeField]
+    protected float findingRange = 20f;
+    public float FindingRange {get {return findingRange;}}
 
 
     void Awake()
@@ -99,19 +108,98 @@ public abstract class Character : MonoBehaviour
         if(distance <= attackRange) 
         {
             SetState(CharState.Attack);
+            Attack(); //frist Atk
         }
     }
 
+    protected void AttackUpdate()
+    {
+        if(curCharTarget == null)
+            return;
+        if (curCharTarget.CurHP <= 0)
+        {
+            SetState(CharState.Idle);
+            return;
+        }
+        navAgent.isStopped = true;
+
+        attackTimer += Time.deltaTime;
+        if(attackTimer >= attackCoolDown)
+        {
+            attackTimer = 0f;
+            Attack();
+        }
+        float distance = Vector3.Distance(transform.position,curCharTarget.transform.position);
+
+        if (distance > attackRange)
+        {
+            SetState(CharState.WalkToEnemy);
+            navAgent.SetDestination(curCharTarget.transform.position);
+            navAgent.isStopped = false;
+        }
+    }
+
+    protected void AttackLogic()
+    {
+        Character target = curCharTarget.GetComponent<Character>();
+
+        if(target != null)
+            target.ReceiveDamage(this);
+    }
+
+    protected void Attack()
+    {
+        transform.LookAt(curCharTarget.transform);
+
+        anim.SetTrigger("Attack");
+
+        //attack logic
+        AttackLogic();
+    }
+    protected virtual IEnumerator DestroyObject()
+    {
+        yield return new WaitForSeconds(5f);
+        Destroy(gameObject);
+    }
+    protected virtual void Die()
+    {
+        navAgent.isStopped = true;
+        SetState(CharState.Die);
+        anim.SetTrigger("Die");
+        StartCoroutine(DestroyObject());
+    }
+
+    public void ReceiveDamage(Character enemy)
+    {
+        if (curHP <= 0 || state == CharState.Die)
+            return;
+        curHP -= enemy.attackDamage;
+        if(curHP <= 0)
+        {
+            curHP = 0;
+            Die();
+        }
+        
+    }
+
+    public bool IsMyEnemy(string targetTag)
+    {
+        string myTag = gameObject.tag;
+
+        if((myTag == "Hero" || myTag == "Player") && targetTag == "Enemy")
+            return true;
+        
+        if (myTag == "Enemy" && (targetTag == "Hero" || targetTag == "Player"))
+            return true;
+
+        return false;
+    }
+
+    
+
     void Update()
     {
-        switch (state)
-        {
-            case CharState.Walk:
-                WalkUpdate();
-                break;
-            
-
-        }
+        
     }
 }
 
